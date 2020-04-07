@@ -17,13 +17,12 @@
     </properties>
 
     <modules>
-        <module>springboot-hello-world</module>
         <module>springboot-service-dtos</module>
         <module>springboot-product-service</module>
         <module>springboot-pricing-service</module>
         <module>springboot-profile-service</module>
         <module>springboot-eureka-server</module>
-    <module>springboot-zuul-server</module>
+        <module>springboot-zuul-server</module>
   </modules>
     <dependencyManagement>
         <dependencies/>

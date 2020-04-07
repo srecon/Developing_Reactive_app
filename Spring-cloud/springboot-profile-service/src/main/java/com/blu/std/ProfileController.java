@@ -1,6 +1,8 @@
 package com.blu.std;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +64,7 @@ public class ProfileController {
      * select a price according to the profile category
      * If user status is VIP, give him/her a 3% discount
      **/
+    @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("/calculatePricing")
     public BigDecimal calculatePricing() {
         LOGGER.info("REST method calculatePricing invoked!");
@@ -99,6 +102,10 @@ public class ProfileController {
             throw new IllegalArgumentException("argument %max must be greater than %min");
 
         return new Random().nextInt((max-min)+1) +min;
+    }
+    private BigDecimal fallback(Throwable hystrixCommand){
+
+        return new BigDecimal(0);
     }
 
 }
