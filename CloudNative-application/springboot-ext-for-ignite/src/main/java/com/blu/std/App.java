@@ -39,17 +39,13 @@ public class App
             public void run(String... args) throws Exception {
                 LOGGER.info("Test Ignite node setup and run some queries!");
                 LOGGER.info("IgniteInstanceName: " + ignite.configuration().getIgniteInstanceName());
-                // Read and write some data from/to cache named "my-cache"
-                // Cache "my-cache" configured on application.yml file
-                IgniteCache<Integer, String> cache = ignite.getOrCreateCache("my-cache");
-                cache.put(1, "Hello");
-                cache.put(2, "World!");
-                LOGGER.info("Add a few values into my-cache cache");
-                LOGGER.info("Read the value from the cache: "+ cache.get(1));
 
                 LOGGER.info("Init the table QUOTE!!");
+                // get the cache "quote" from the application.yml
                 IgniteCache<Long, String> cache_quote = ignite.cache("quote");
-                String qry = "insert into QUOTE(ID, VAL) values (?, ?)";
+
+                String qry = "MERGE into QUOTE(ID, VAL) values (?, ?)";
+                // insert a few rows
                 cache_quote.query(new SqlFieldsQuery(qry).setArgs(1L,"Today you are you!")).getAll();
                 cache_quote.query(new SqlFieldsQuery(qry).setArgs(2L,"Today was good.")).getAll();
                 cache_quote.query(new SqlFieldsQuery(qry).setArgs(3L,"Today is the only day.")).getAll();
