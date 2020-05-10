@@ -22,6 +22,7 @@
         <module>springboot-product-service</module>
         <module>springboot-pricing-service</module>
         <module>springboot-profile-service</module>
+        <module>springboot-ext-for-ignite</module>
   </modules>
     <dependencyManagement>
         <dependencies/>
