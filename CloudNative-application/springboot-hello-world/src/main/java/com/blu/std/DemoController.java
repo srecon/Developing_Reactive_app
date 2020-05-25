@@ -2,15 +2,23 @@ package com.blu.std;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Random;
 
 @RestController
+@Configuration
+@PropertySource("classpath:app.properties")
 public class DemoController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
+
+    @Value( "${spring.hello-world.quotes}" )
+    private String suffix_quote;
 
     @RequestMapping("/")
     public String index() {
@@ -19,6 +27,8 @@ public class DemoController {
 
     @RequestMapping("/getQuote")
     public String getQuote() {
+        LOGGER.info("/getQuote method invoked!");
+
         final String[] todaysQuote = new String[]{
                 "Today you are you!",
                 "Today was good.",
@@ -27,7 +37,7 @@ public class DemoController {
         };
         final int rnd = new Random().nextInt(todaysQuote.length);
 
-        return todaysQuote[rnd];
+        return suffix_quote + " : " + todaysQuote[rnd];
     }
 
 }
