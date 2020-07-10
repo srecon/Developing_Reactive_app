@@ -1,3 +1,5 @@
+# READ the Article to build and deploy Quarkus application to OpenShift https://www.shamimbhuiyan.com/post/cloud-native-application-made-easy-part-three-build-deploy-quarkus-application-to-openshift
+
 # quarkus-getquote project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
