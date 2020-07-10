@@ -1,4 +1,6 @@
-# READ the Article to build and deploy Quarkus application to OpenShift https://www.shamimbhuiyan.com/post/cloud-native-application-made-easy-part-three-build-deploy-quarkus-application-to-openshift
+# READ the [Article](https://www.shamimbhuiyan.com/post/cloud-native-application-made-easy-part-three-build-deploy-quarkus-application-to-openshift
+) to build and deploy Quarkus application to OpenShift
+
 
 # quarkus-getquote project
 
