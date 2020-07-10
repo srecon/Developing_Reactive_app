@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-native-applications.iml" filepath="$PROJECT_DIR$/cloud-native-applications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-ext-for-ignite/springboot-ext-for-ignite.iml" filepath="$PROJECT_DIR$/springboot-ext-for-ignite/springboot-ext-for-ignite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-hello-world/springboot-hello-world.iml" filepath="$PROJECT_DIR$/springboot-hello-world/springboot-hello-world.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-pricing-service/springboot-pricing-service.iml" filepath="$PROJECT_DIR$/springboot-pricing-service/springboot-pricing-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-product-service/springboot-product-service.iml" filepath="$PROJECT_DIR$/springboot-product-service/springboot-product-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-profile-service/springboot-profile-service.iml" filepath="$PROJECT_DIR$/springboot-profile-service/springboot-profile-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-service-dtos/springboot-service-dtos.iml" filepath="$PROJECT_DIR$/springboot-service-dtos/springboot-service-dtos.iml" />
+    </modules>
+  </component>
+</project>

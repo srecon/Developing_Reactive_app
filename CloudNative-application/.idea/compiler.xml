@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springboot-service-dtos" />
+        <module name="springboot-pricing-service" />
+        <module name="springboot-product-service" />
+        <module name="springboot-profile-service" />
+        <module name="springboot-hello-world" />
+        <module name="springboot-ext-for-ignite" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-native-applications" target="1.5" />
+      <module name="springboot-ext-for-ignite" target="1.8" />
+      <module name="springboot-hello-world" target="1.8" />
+      <module name="springboot-pricing-service" target="1.8" />
+      <module name="springboot-product-service" target="1.8" />
+      <module name="springboot-profile-service" target="1.8" />
+      <module name="springboot-service-dtos" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-ext-for-ignite" options="-parameters" />
+      <module name="springboot-hello-world" options="-parameters" />
+      <module name="springboot-pricing-service" options="-parameters" />
+      <module name="springboot-product-service" options="-parameters" />
+      <module name="springboot-profile-service" options="-parameters" />
+    </option>
+  </component>
+</project>
