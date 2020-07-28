@@ -18,9 +18,7 @@ import javax.ws.rs.Produces;
 import java.util.Arrays;
 import java.util.Optional;
 
-//@ApplicationScoped
-@Startup
-//@Singleton
+@ApplicationScoped
 public class IgniteConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IgniteConfiguration.class);
