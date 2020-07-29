@@ -1,0 +1,17 @@
+
+INSERT INTO Person (id, name, nick) VALUES (1, 'Donald trump', 'RealDonaldTrump');
+INSERT INTO Person (id, name, nick) VALUES (2, 'Dalai Lama', 'Dlama');
+INSERT INTO Person (id, name, nick) VALUES (3, 'Mary Major', 'MM');
+INSERT INTO Person (id, name, nick) VALUES (4, 'Richard Miles', 'RMiles');
+
+
+INSERT INTO TWEETS (id, tweet, person_id) VALUES (1, 'MAKE AMERICA GREAT AGAIN!', 1);
+INSERT INTO TWEETS (id, tweet, person_id) VALUES (2, 'You are human beings, I am a human being; you want a happy life, and I want a happy life.', 2);
+INSERT INTO TWEETS (id, tweet, person_id) VALUES (3, 'YAML is the penance for hating XML.', 3);
+INSERT INTO TWEETS (id, tweet, person_id) VALUES (4, 'The ad is a lie!', 1);
+INSERT INTO TWEETS (id, tweet, person_id) VALUES (5, 'ARMAGEDDON two weeks? ', 4);
+
+
+SELECT p.name, t.tweet
+FROM Person p, Tweets t
+WHERE t.person_id = p.id;

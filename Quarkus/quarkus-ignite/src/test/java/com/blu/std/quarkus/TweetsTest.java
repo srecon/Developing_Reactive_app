@@ -12,10 +12,10 @@ public class TweetsTest {
     @Test
     public void testHelloEndpoint() {
         given()
-          .when().get("/tweet/todays")
+          .when().get("/tweet/byprofile/RealDonaldTrump")
           .then()
              .statusCode(200)
-             .body(is("hello"));
+             .body(is("MAKE AMERICA GREAT AGAIN!"));
     }
 
 }

@@ -1,52 +1,51 @@
 package com.blu.std.quarkus;
 
-import org.apache.ignite.Ignite;
-import org.apache.ignite.IgniteCache;
-import org.apache.ignite.Ignition;
+
+import org.apache.ignite.cache.query.SqlFieldsQuery;
 import org.apache.ignite.client.ClientCache;
-import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
-import org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Arrays;
+import java.util.List;
+
 
 /**
- * REST CALL curl -w "\n" http://localhost:8080/tweet/todayss
+ * REST CALL curl -w "\n" http://localhost:8080/tweet/byprofile/name
  * */
 
 @Path("/tweet")
 public class Tweets {
 
     private static final Logger logger = LoggerFactory.getLogger(Tweets.class);
-    private static final String CACHE_NAME= "thin-cache";
+    private static final String CACHE_NAME= "SQL_PUBLIC_PERSON";
 
     @Inject
     IgniteConfiguration ignite;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/todays")
-    public String hello() {
-        logger.info("/tweet/todays method invokes");
-        String ret = "hello";
+    @Path("/byprofile/{nick}")
+    public String getTweetByProfile(@PathParam("nick") String nickname) {
+        logger.info("/byprofile/{nick} method invoked, method arg:" + nickname);
+
         if(ignite.getIgniteClient().isPresent()){
 
-            ClientCache<String, String> clientCache = ignite.getIgniteClient().get().getOrCreateCache(CACHE_NAME);
-            // put a few value
-            clientCache.put("Moscow", "095");
-            clientCache.put("Vladimir", "033");
-            // get the region code of the Vladimir
-            String val = clientCache.get("Vladimir");
+            ClientCache<Long, String> clientCache = ignite.getIgniteClient().get().cache(CACHE_NAME);
 
-            logger.info("Print value: {}", val);
+            String qry = "SELECT p.name, t.tweet\n" +
+                    "FROM Person p, Tweets t\n" +
+                    "WHERE t.person_id = p.id " +
+                    "and p.nick = ?";
 
-            return ret;
+
+            List<List<?>> rows = clientCache.query(new SqlFieldsQuery(qry).setArgs(nickname)).getAll();
+
+
+            return rows.get(0).get(1).toString();
 
         }
         return "Exception occurs!!";

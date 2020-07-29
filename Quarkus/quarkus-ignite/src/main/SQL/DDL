@@ -1,0 +1,6 @@
+./sqlline.sh --verbose=true -u jdbc:ignite:thin://127.0.0.1/
+
+
+CREATE TABLE Person (id LONG PRIMARY KEY, name VARCHAR, nick VARCHAR) WITH "template=replicated";
+
+CREATE TABLE TWEETS (id LONG, tweet VARCHAR, person_id LONG, PRIMARY KEY (id, person_id)) WITH "backups=1, affinityKey=person_id";
