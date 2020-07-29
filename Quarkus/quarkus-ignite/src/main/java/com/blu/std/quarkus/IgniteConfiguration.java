@@ -41,9 +41,7 @@ public class IgniteConfiguration {
             igniteClient = Optional.ofNullable(Ignition.startClient(cfg));
 
         } catch(ClientException e) {
-            LOGGER.error("Ignite client exception:" + e.getMessage());
-        } catch (Exception ex){
-            ex.printStackTrace();
+            e.printStackTrace();
         }
 
         return igniteClient;

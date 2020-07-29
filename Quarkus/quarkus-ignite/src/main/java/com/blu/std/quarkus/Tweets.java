@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * REST CALL curl -w "\n" http://localhost:8080/tweet/byprofile/name
+ * REST CALL curl -w "\n" http://localhost:8080/tweet/byprofile/{name}
  * */
 
 @Path("/tweet")
@@ -30,7 +30,7 @@ public class Tweets {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/byprofile/{nick}")
     public String getTweetByProfile(@PathParam("nick") String nickname) {
-        logger.info("/byprofile/{nick} method invoked, method arg:" + nickname);
+        logger.info("/byprofile/{nick} API invoked, method arg:" + nickname);
 
         if(ignite.getIgniteClient().isPresent()){
 
@@ -47,8 +47,9 @@ public class Tweets {
 
             return rows.get(0).get(1).toString();
 
+        } else {
+            return "Exception occurs!!";
         }
-        return "Exception occurs!!";
     }
 
 }
