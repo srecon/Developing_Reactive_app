@@ -20,18 +20,24 @@ public class DemoController {
     @Value( "${spring.hello-world.quotes}" )
     private String suffix_quote;
 
+    /**
+     * curl -w "\n" http://localhost:8080
+     * **/
     @RequestMapping("/")
     public String index() {
         return "Spring Boot Hello-world application for demo!";
     }
 
+    /**
+     * curl -w "\n" http://localhost:8080/getQuote
+     * **/
     @RequestMapping("/getQuote")
     public String getQuote() {
         LOGGER.info("/getQuote method invoked!");
 
         final String[] todaysQuote = new String[]{
                 "Today you are you!",
-                "Today was good.",
+                "Today is good.",
                 "Today is the only day.",
                 "What is not started today is never finished tomorrow."
         };
