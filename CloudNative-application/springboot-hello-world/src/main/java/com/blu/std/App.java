@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 /**
- * java -jar -Dserver.port=8180 ./target/springboot-hello-world-1.0-SNAPSHOT.jar
+ * java -jar -Dserver.port=8080 ./target/springboot-hello-world-1.0-SNAPSHOT.jar
  * */
 @SpringBootApplication
 public class App 
