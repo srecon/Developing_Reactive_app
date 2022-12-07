@@ -1,0 +1,30 @@
+runtime:
+  cache_dir: ./.cache/antora
+site:
+  title: Istio Workshop
+  url: https://redhat-developer-demos.github.io/istio-tutorial/workshop/
+  start_page: istio-tutorial::index.adoc
+
+content:
+  sources:
+  - url: .
+    branches: HEAD
+    start_path: documentation
+asciidoc:
+  attributes:
+    workshop: true
+    ocpurl: https://master.jconf-d4f8.openshiftworkshop.com
+    appdomain: apps.jconf-d4f8.openshiftworkshop.com
+    etherpad: https://etherpad.wikimedia.org/p/istio-jconf
+    namespace-suffix: -$WORKSHOP_USER
+    path: customer$WORKSHOP_USER
+  extensions:
+    - ./lib/remote-include-processor.js
+    - ./lib/tab-block.js
+ui:
+  bundle:
+    url: https://github.com/redhat-developer-demos/rhd-tutorial-ui/releases/download/v0.0.4/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+output:
+  dir: ./gh-pages/workshop

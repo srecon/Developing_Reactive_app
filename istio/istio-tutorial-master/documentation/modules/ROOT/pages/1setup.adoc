@@ -1,0 +1,178 @@
+= Setup
+include::_attributes.adoc[]
+
+[#prerequisite]
+== Prerequisite CLI tools
+
+You will need in this tutorial:
+
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
+
+| `istioctl`
+| https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-osx.tar.gz[Download]
+| https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-win.zip[Download]
+| https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-linux.tar.gz[Download]
+|===
+
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
+|===
+
+[#download-tutorial-sources]
+== Download Tutorial Sources
+
+Before we start setting up the environment, let's clone the tutorial sources and set the `TUTORIAL_HOME` environment variable to point to the root directory of the tutorial:
+
+:tutorial-url: https://github.com/redhat-developer-demos/istio-tutorial
+:folder: istio-tutorial
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
+
+[#install-minikube]
+=== Install Minikube
+
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/install-minikube.adoc[]
+
+[#start-kubernetes]
+=== Start Kubernetes
+
+There are series of commands as steps that allows you get started with minikube. The following section shows how to start minikube with minimal and required configurations:
+
+:profile: istio-devnation
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
+
+
+[#upstreamistioinstallation]
+== Istio Installation
+
+[tabs, subs="attributes+,+macros"]	
+====
+Minikube::
++
+--
+[source,bash,subs="attributes+,+macros"]
+----
+#!/bin/bash
+
+# Mac OS:
+curl -L https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-osx.tar.gz | tar xz
+
+# Fedora/RHEL:
+curl -L https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-linux.tar.gz | tar xz
+
+# Windows
+curl -L https://github.com/istio/istio/releases/download/{istio-version}/istio-{istio-version}-win.zip
+
+# Both:
+cd istio-{istio-version}
+export ISTIO_HOME=`pwd`
+export PATH=$ISTIO_HOME/bin:$PATH
+cd $TUTORIAL_HOME
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]
+----
+istioctl manifest apply --set profile=demo --set values.global.proxy.privileged=true
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]
+----
+- Applying manifest for component Base...
+✔ Finished applying manifest for component Base.
+- Applying manifest for component Tracing...
+- Applying manifest for component Kiali...
+- Applying manifest for component IngressGateway...
+- Applying manifest for component Pilot...
+- Applying manifest for component Galley...
+- Applying manifest for component EgressGateway...
+- Applying manifest for component Citadel...
+- Applying manifest for component Prometheus...
+- Applying manifest for component Policy...
+- Applying manifest for component Injector...
+- Applying manifest for component Telemetry...
+- Applying manifest for component Grafana...
+✔ Finished applying manifest for component Prometheus.
+✔ Finished applying manifest for component Citadel.
+✔ Finished applying manifest for component Kiali.
+✔ Finished applying manifest for component Tracing.
+✔ Finished applying manifest for component Galley.
+✔ Finished applying manifest for component Injector.
+✔ Finished applying manifest for component Policy.
+✔ Finished applying manifest for component Grafana.
+✔ Finished applying manifest for component IngressGateway.
+✔ Finished applying manifest for component EgressGateway.
+✔ Finished applying manifest for component Pilot.
+✔ Finished applying manifest for component Telemetry.
+
+
+✔ Installation complete
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]
+----
+kubectl config set-context $(kubectl config current-context) --namespace=istio-system
+----
+
+IMPORTANT: `istio-demo.yaml` enables policy enforcement by default which is required in some sections of the tutorial. Please refer to https://istio.io/docs/tasks/policy-enforcement/enabling-policy/ if you are not using this file.
+
+Wait for Istio's components to be ready
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]
+----
+kubectl get pods -w
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]
+----
+NAME                                        READY     STATUS      RESTARTS   AGE
+grafana-6b65874977-v92gw                  1/1     Running   0          99s
+istio-citadel-7bcc69d486-lqhwh            1/1     Running   0          101s
+istio-egressgateway-6b6f694c97-bcpj8      0/1     Running   0          102s
+istio-galley-6cf8f58d7b-gg8pv             1/1     Running   0          100s
+istio-ingressgateway-8c9c9c9f5-glvhm      0/1     Running   0          103s
+istio-pilot-c6dbc54b9-trwjt               0/1     Running   0          101s
+istio-policy-66c4cf95c5-wf5hn             1/1     Running   2          100s
+istio-sidecar-injector-79ccdf54c4-6dpnr   1/1     Running   0          100s
+istio-telemetry-7bf96cb54f-jksfw          1/1     Running   3          101s
+istio-tracing-c66d67cd9-mqhjx             1/1     Running   0          102s
+kiali-8559969566-phh2b                    1/1     Running   0          101s
+prometheus-66c5887c86-lfx7p               1/1     Running   0          101s
+----
+--
+OpenShift::
++
+--
+Istio is supported in OpenShift by Red Hat OpenShift Service Mesh operator.
+
+To install it, you need to follow the instructions written in: https://docs.openshift.com/container-platform/4.3/service_mesh/service_mesh_install/preparing-ossm-installation.html
+
+It is important that after you finish with the installation, all the required pods are delpyed in `istio-system` namespace:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]
+----
+kubectl get pods -w
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]
+----
+NAME                                     READY   STATUS             RESTARTS   AGE
+grafana-7bf5764d9d-2b2f6                 2/2     Running            0          28h
+istio-citadel-576b9c5bbd-z84z4           1/1     Running            0          28h
+istio-egressgateway-5476bc4656-r4zdv     1/1     Running            0          28h
+istio-galley-7d57b47bb7-lqdxv            1/1     Running            0          28h
+istio-ingressgateway-dbb8f7f46-ct6n5     1/1     Running            0          28h
+istio-pilot-546bf69578-ccg5x             2/2     Running            0          28h
+istio-policy-77fd498655-7pvjw            2/2     Running            0          28h
+istio-sidecar-injector-df45bd899-ctxdt   1/1     Running            0          28h
+istio-telemetry-66f697d6d5-cj28l         2/2     Running            0          28h
+jaeger-896945cbc-7lqrr                   2/2     Running            0          11h
+kiali-78d9c5b87c-snjzh                   0/1     Running            0          22h
+prometheus-6dff867c97-gr2n5              2/2     Running            0          28h
+----
+--
+====

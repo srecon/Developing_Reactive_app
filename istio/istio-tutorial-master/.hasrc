@@ -1,0 +1,13 @@
+# cloud
+minikube
+docker
+kubectl
+
+# sources
+git
+mvn
+
+# access
+curl
+stern
+siege
