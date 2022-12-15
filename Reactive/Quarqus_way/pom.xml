@@ -13,6 +13,7 @@
     <modules>
         <module>quarkus-reactive-rest</module>
         <module>quarkus-reactive-db</module>
+        <module>quarkus-reactive-messaging</module>
     </modules>
 
 </project>
