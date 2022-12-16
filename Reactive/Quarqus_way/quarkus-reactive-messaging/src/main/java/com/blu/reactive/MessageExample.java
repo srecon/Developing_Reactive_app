@@ -13,30 +13,26 @@ import org.eclipse.microprofile.reactive.messaging.Outgoing;
 
 import java.time.Duration;
 
-//@ApplicationScoped
+@ApplicationScoped
 public class MessageExample {
 
     //@Channel("person-chanel")
     //private MutinyEmitter<PersonMessage> personEmitter;
 
-    @Outgoing("person-chanel")
-    @Broadcast
-    public Multi<PersonMessage> ticks() {
-        return Multi.createFrom().ticks().every(Duration.ofSeconds(1))
-                .onOverflow().drop()
-                .onItem().transform(PersonMessage::new);
-    }
-
-//    public Uni<Void> send(PersonMessage person){
-//
-//        return personEmitter.send(person);
+//    @Outgoing("person-chanel")
+//    @Broadcast
+//    public Multi<PersonMessage> ticks() {
+//        return Multi.createFrom().ticks().every(Duration.ofSeconds(1))
+//                .onOverflow().drop()
+//                .onItem().transform(PersonMessage::new);
 //    }
-    // downstream for channel person-channel
-
-    @Incoming("person-chanel")
-    public void print(String msg){
-        System.out.println("Message got:" + msg);
-    }
+//
+//    // downstream for channel person-channel
+//
+//    @Incoming("person-chanel")
+//    public void print(String msg){
+//        System.out.println("Message got:" + msg);
+//    }
 
 
 }
