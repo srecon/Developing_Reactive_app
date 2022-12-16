@@ -19,20 +19,20 @@ public class MessageExample {
     //@Channel("person-chanel")
     //private MutinyEmitter<PersonMessage> personEmitter;
 
-//    @Outgoing("person-chanel")
-//    @Broadcast
-//    public Multi<PersonMessage> ticks() {
-//        return Multi.createFrom().ticks().every(Duration.ofSeconds(1))
-//                .onOverflow().drop()
-//                .onItem().transform(PersonMessage::new);
-//    }
-//
-//    // downstream for channel person-channel
-//
-//    @Incoming("person-chanel")
-//    public void print(String msg){
-//        System.out.println("Message got:" + msg);
-//    }
+    @Outgoing("person-chanel")
+    @Broadcast
+    public Multi<PersonMessage> ticks() {
+        return Multi.createFrom().ticks().every(Duration.ofSeconds(1))
+                .onOverflow().drop()
+                .onItem().transform(PersonMessage::new);
+    }
+
+    // downstream for channel person-channel
+
+    @Incoming("person-chanel")
+    public void print(String msg){
+        System.out.println("Message got:" + msg);
+    }
 
 
 }

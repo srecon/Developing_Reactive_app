@@ -18,6 +18,10 @@ public class HttpEndpoint {
     @Channel("upload")
     MutinyEmitter<Person> emitter;
 
+    /**
+    * curl -X POST -H "Content-Type: application/json" -d '{"name":"Shamim", "age":45}' http://localhost:8080/
+    * */
+
     @POST
     public Uni<Response> upload(Person person){
         return emitter.send(person)
