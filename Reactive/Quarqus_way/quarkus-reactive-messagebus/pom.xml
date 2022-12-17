@@ -5,16 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.blu.reactive</groupId>
-    <artifactId>quarkus-reactive-package</artifactId>
+    <artifactId>quarkus-reactive-messagebus</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>quarkus-reactive-rest</module>
-        <module>quarkus-reactive-db</module>
-        <module>quarkus-reactive-messaging</module>
-        <module>quarkus-reactive-messagebus</module>
+        <module>quarkus-reactive-messagebus-producer</module>
+        <module>quarkus-reactive-messagebus-consumer</module>
+        <module>quarkus-reactive-messagebus-SSE</module>
     </modules>
 
 </project>
