@@ -68,9 +68,15 @@
     choose Jib, as all dependencies are cached in a layer separate from the application,
     making subsequent container builds much faster.
     -->
-    <dependency>
+    <!--<dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>-->
+    <!-- Quarkus Helm extension-->
+    <dependency>
+      <groupId>io.quarkiverse.helm</groupId>
+      <artifactId>quarkus-helm</artifactId>
+      <version>0.2.1</version>
     </dependency>
 
   </dependencies>

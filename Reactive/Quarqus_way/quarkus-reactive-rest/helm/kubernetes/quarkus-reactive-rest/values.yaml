@@ -1,0 +1,5 @@
+---
+app:
+  serviceType: ClusterIP
+  image: shamim/quarkus-reactive-rest:1.0.0-SNAPSHOT
+  replicas: 3
