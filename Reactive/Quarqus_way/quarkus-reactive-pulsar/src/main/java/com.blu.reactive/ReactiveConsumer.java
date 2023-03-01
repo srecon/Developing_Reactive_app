@@ -8,8 +8,7 @@ import org.apache.pulsar.reactive.client.api.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@QuarkusMain
-
+//@QuarkusMain
 public class ReactiveConsumer {
     private static final String CLUSTER_URL = "pulsar://localhost:6650";
     private static final String TOPIC_NAME = "my-topic";

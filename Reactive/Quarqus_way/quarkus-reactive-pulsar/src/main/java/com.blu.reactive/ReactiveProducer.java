@@ -14,7 +14,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @QuarkusMain
-
 public class ReactiveProducer {
 
     private static final String CLUSTER_URL = "pulsar://localhost:6650";

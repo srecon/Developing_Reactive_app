@@ -4,7 +4,7 @@ package com.blu.reactive;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import org.apache.pulsar.client.api.*;
 
-@QuarkusMain
+//@QuarkusMain
 public class PulsarConsumer {
     private static final String CLUSTER_URL = "pulsar://localhost:6650";
     private static final String TOPIC_NAME = "my-topic";

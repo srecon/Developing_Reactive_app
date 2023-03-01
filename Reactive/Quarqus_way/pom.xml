@@ -12,5 +12,6 @@
     <module>quarkus-reactive-messaging</module>
     <module>quarkus-reactive-messagebus</module>
     <module>quarkus-reactive-pulsar</module>
+    <module>quarkus-loom-example</module>
   </modules>
 </project>
