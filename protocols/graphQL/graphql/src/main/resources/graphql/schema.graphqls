@@ -1,0 +1,17 @@
+# Query to localhost:8080/graphql
+type Query {
+    bookById(id: ID): Book
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}

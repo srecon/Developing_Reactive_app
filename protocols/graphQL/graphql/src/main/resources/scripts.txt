@@ -1,0 +1,24 @@
+http://localhost:8080/graphiql
+
+query bookDetails {
+  bookById(id: "2") {
+    id
+    name
+    pageCount
+    author {
+      id
+      firstName
+      lastName
+    }
+  }
+}
+{bookById(id: "2") {id}}
+
+# working CURL post command with newline
+curl -w "\n" --location --request POST 'http://localhost:8080/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query get_book{ bookById(id: 2) {id, name} }"}'
+
+
+
+
