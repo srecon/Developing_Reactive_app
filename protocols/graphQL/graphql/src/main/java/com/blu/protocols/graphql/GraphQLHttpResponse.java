@@ -32,13 +32,12 @@ public class GraphQLHttpResponse {
     public static void main(String[] args) throws URISyntaxException, IOException {
         logger.info("GraphQLHttpResponse started!!");
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-        //HttpGet request = new HttpGet(QlURL);
+
         HttpPost request =  new HttpPost(QlURL);
         request.addHeader("Accept", "application/json");
         request.addHeader("Content-Type", "application/json");
 
         Map<String, Object> variables = new HashMap<>();
-        //String query ="{\"query\":\"query get_book{ bookById(id: 2) {id, name} }\"}";
         String query = "{bookById(id: \"2\") {id, name, pageCount, author {firstName}} }";
         variables.put("query", query);
 
@@ -46,14 +45,6 @@ public class GraphQLHttpResponse {
         StringEntity requestEntity = new StringEntity(jsonObject.toString());
         request.setEntity(requestEntity);
 
-
-//        URI uri = new URIBuilder(request.getURI())
-//                .addParameter("query", query)
-//                .build();
-        //logger.info("URI to call: "+ uri.toString());
-        // set the request
-        //request.setURI(uri);
-        // make the get request
         CloseableHttpResponse response =  httpClient.execute(request);
         // print the response
         BufferedReader bufReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));

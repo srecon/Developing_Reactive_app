@@ -12,6 +12,7 @@ public class GraphQLClient {
     private static final String QlURL="http://localhost:8080/graphql";
     private static final String request = "{bookById(id: 2) {id}}";
 
+    @todo using HTTP POST method
     public static void main(String[] args) {
         logger.info("Calling GraphQL API!!");
 
