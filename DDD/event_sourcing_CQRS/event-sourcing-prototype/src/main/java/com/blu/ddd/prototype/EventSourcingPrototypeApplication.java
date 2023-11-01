@@ -1,10 +1,9 @@
-package event.sourcing.prototype;
+package com.blu.ddd.prototype;
 
-import event.sourcing.es.events.Event;
-import event.sourcing.es.events.PersonAddContactsEvent;
-import event.sourcing.es.events.PersonCreatedEvent;
-import event.sourcing.es.repository.PersonEventRepository;
-import event.sourcing.es.services.PersonRepositoryServices;
+import com.blu.ddd.es.events.PersonAddContactsEvent;
+import com.blu.ddd.es.events.PersonCreatedEvent;
+import com.blu.ddd.es.repository.PersonEventRepository;
+import com.blu.ddd.es.services.PersonRepositoryServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

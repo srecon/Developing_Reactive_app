@@ -1,4 +1,4 @@
-package event.sourcing.es.events;
+package com.blu.ddd.es.events;
 
 import lombok.ToString;
 

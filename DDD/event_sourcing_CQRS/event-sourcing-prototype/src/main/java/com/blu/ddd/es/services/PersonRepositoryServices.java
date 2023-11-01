@@ -1,7 +1,7 @@
-package event.sourcing.es.services;
+package com.blu.ddd.es.services;
 
-import event.sourcing.es.events.Event;
-import event.sourcing.es.repository.PersonEventRepository;
+import com.blu.ddd.es.repository.PersonEventRepository;
+import com.blu.ddd.es.events.Event;
 
 public class PersonRepositoryServices {
     private PersonEventRepository eventRepository;

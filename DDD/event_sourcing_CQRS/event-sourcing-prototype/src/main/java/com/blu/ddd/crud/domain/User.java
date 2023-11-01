@@ -1,4 +1,4 @@
-package event.sourcing.crud.domain;
+package com.blu.ddd.crud.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

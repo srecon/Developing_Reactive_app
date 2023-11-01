@@ -1,6 +1,6 @@
-package event.sourcing.es.repository;
+package com.blu.ddd.es.repository;
 
-import event.sourcing.es.events.Event;
+import com.blu.ddd.es.events.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
