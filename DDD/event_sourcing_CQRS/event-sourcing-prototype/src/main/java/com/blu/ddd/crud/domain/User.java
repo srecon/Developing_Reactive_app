@@ -8,8 +8,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
-
-@Getter @Setter @NoArgsConstructor
+@Data
 public class User implements Serializable {
     private long id;
     private String firstName;
