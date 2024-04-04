@@ -26,14 +26,25 @@ GraalVM native build tools for Maven to generate native image.
 
 ```sdk install java 21.0.2-graalce```
 ```sdk use 21.0.2-graalce```
+
 2. Check the Java verison
+
 ```java --version```
-3. Generate the native image with the profile `-Pnative`
+
+4. Generate the native image with the profile `-Pnative`
+
 ```mvn -Pnative native:compile```
+
 The native image executable file will be found in the `targer` directory. In my case, the name of the native-image is `native-image-test`, file size is 80,9 MB.
-4. Run the executable file 
+
+5. Run the executable file 
+
 ```./target/native-image-test```
+
 Result:
+
 ```2024-04-04T12:30:35.461+03:00  INFO 8399 --- [           main] c.b.r.n.NativeImageTestApplication       : Started NativeImageTestApplication in 0.07 seconds (process running for 0.081)```
-5. Invoke the service as shown below:
-   ```curl http://192.168.1.143:8080/customers```
+
+6. Invoke the service as shown below:
+
+```curl http://192.168.1.143:8080/customers```
