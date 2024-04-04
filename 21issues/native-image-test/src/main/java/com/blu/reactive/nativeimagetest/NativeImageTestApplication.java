@@ -1,5 +1,7 @@
 package com.blu.reactive.nativeimagetest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 @SpringBootApplication
 public class NativeImageTestApplication {
+	private static final Logger LOG = LoggerFactory.getLogger(NativeImageTestApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(NativeImageTestApplication.class, args);
@@ -19,7 +22,8 @@ public class NativeImageTestApplication {
 	class CustomersHttpController {
 
 		@GetMapping("/customers")
-		Collection<Customer> customers() {
+		Collection<Customer> getAllCustomers() {
+			LOG.info("Invoked method: {getAllCustomers} ");
 			return Set.of(new Customer(1, "A"), new Customer(2, "B"), new Customer(3, "C"));
 		}
 
