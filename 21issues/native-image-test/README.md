@@ -1,4 +1,4 @@
-## Native Image creation on Spring boot 3.2
+## Native Image creation on Spring boot 3.2 [^1]
 
 ### Option 1. Spring buildpacks with Maven
 
@@ -48,3 +48,5 @@ Result:
 6. Invoke the service as shown below:
 
 ```curl http://192.168.1.143:8080/customers```
+
+[^1]: GraalVM Native Image Support https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html
