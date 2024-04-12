@@ -27,7 +27,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- crac support for Open JDK Temurin: 21.0.1-tem -->
+
 		<dependency>
 			<groupId>org.crac</groupId>
 			<artifactId>crac</artifactId>

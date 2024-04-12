@@ -1,52 +1,29 @@
-## Spring boot 3.2 CRaC test on MacOs [^1]
+## Spring boot 3.2 CRaC [^1]
 
-### Option 1. Spring buildpacks with Maven
+### Limitations:
+1. The feature is not included in OpenJDK version; you have to use JDK with CraC support, like Zulu [2]
+2. The feature is available on Linux only. Azul Zulu Build of OpenJDK with CRaC support for MacOS and Windows only provides a simulated checkpoint/restore mechanism to be used for development and testing
+3. SDK Manager on MacOS doesn't provide any Open JDK version with CRaC support.
+4. The open JDK version with CRaC should be installed/extracted with sudo.
+5. org.crac Maven/Gradle dependency
+6. A folder location for storing the snapshot
 
-With a single Maven command you will get a docker image on your local docker daemon. The image will not contain any JVM rather than static binary to run on the machine directly.
+1. Download and install the Azul Zulu Build of OpenJDK with CRaC support 
 
-1. Install Docker desktop on local machine
-2. Build the image with the `native` profile active
-    ```$ mvn -Pnative spring-boot:build-image```
-Wait for a while to build and pull the image to repository
-3. Create a container and run it by the following command
-   ```docker run --rm -p 8080:8080 native-image-test:0.0.1-SNAPSHOT```
+2. Download or pull the sample project from the Git Hub repository. Build the project as shown below:
 
-Result:
+```mvn clean package```
 
-```2024-04-04T09:19:50.712Z  INFO 1 --- [           main] c.b.r.n.NativeImageTestApplication       : Started NativeImageTestApplication in 0.164 seconds (process running for 0.174)```
+4. Run the application with the following command:
 
-4. Invoke the service as shown below:
-   ```curl http://192.168.1.143:8080/customers```
+```java -XX:CRaCCheckpointTo=./checkpoint_store -jar ./target/spring-boot-crac-0.0.1-SNAPSHOT.jar```
 
-### Option 2. GraalVM Native build tool.
+5. On another terminal, run the following command 
 
-GraalVM native build tools for Maven to generate native image.
+```jcmd ./target/spring-boot-crac-0.0.1-SNAPSHOT.jar JDK.checkpoint```
 
-1. Install Java GraalVM
+6. Restore:
 
-```sdk install java 21.0.2-graalce```
-```sdk use 21.0.2-graalce```
+```java -XX:CRaCRestoreFrom=./checkpoint_store```
 
-2. Check the Java verison
-
-```java --version```
-
-4. Generate the native image with the profile `-Pnative`
-
-```mvn -Pnative native:compile```
-
-The native image executable file will be found in the `targer` directory. In my case, the name of the native-image is `native-image-test`, file size is 80,9 MB.
-
-5. Run the executable file 
-
-```./target/native-image-test```
-
-Result:
-
-```2024-04-04T12:30:35.461+03:00  INFO 8399 --- [           main] c.b.r.n.NativeImageTestApplication       : Started NativeImageTestApplication in 0.07 seconds (process running for 0.081)```
-
-6. Invoke the service as shown below:
-
-```curl http://192.168.1.143:8080/customers```
-
-[^1]: GraalVM Native Image Support https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html
+[^1]: Speed up the Java app startup time, part -2 : using CRaC with Spring boot 3.2 https://shamimbhuiyan.ru/blogs/speed-up-the-java-app-startup-time-part----using-crac-with-spring-boot-
