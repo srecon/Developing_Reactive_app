@@ -8,21 +8,23 @@
 5. org.crac Maven/Gradle dependency
 6. A folder location for storing the snapshot
 
+### Steps:
+
 1. Download and install the Azul Zulu Build of OpenJDK with CRaC support 
 
 2. Download or pull the sample project from the Git Hub repository. Build the project as shown below:
 
 ```mvn clean package```
 
-4. Run the application with the following command:
+3. Run the application with the following command:
 
 ```java -XX:CRaCCheckpointTo=./checkpoint_store -jar ./target/spring-boot-crac-0.0.1-SNAPSHOT.jar```
 
-5. On another terminal, run the following command 
+4. On another terminal, run the following command 
 
 ```jcmd ./target/spring-boot-crac-0.0.1-SNAPSHOT.jar JDK.checkpoint```
 
-6. Restore:
+5. Restore:
 
 ```java -XX:CRaCRestoreFrom=./checkpoint_store```
 
