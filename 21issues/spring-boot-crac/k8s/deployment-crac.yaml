@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-crac
+  namespace: crac
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-boot-crac
+  template:
+    metadata:
+      labels:
+        app: spring-boot-crac
+    spec:
+      containers:
+        - name: spring-boot-crac
+          image: spring-boot-crac:0.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: VERSION
+              value: "v1"
+          command: ["java"]
+          args: ["-XX:CRaCRestoreFrom=/crac"]
+          volumeMounts:
+            - mountPath: /crac
+              name: crac
+          securityContext:
+            privileged: true
+          resources:
+            limits: 
+              cpu: '1'
+      volumes:
+        - name: crac
+          persistentVolumeClaim:
+            claimName: crac-store
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-crac
+  namespace: crac
+  labels:
+    app: spring-boot-crac
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: spring-boot-crac
