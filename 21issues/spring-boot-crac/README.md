@@ -56,4 +56,4 @@
 
 
 [^1]: Speed up the Java app startup time, part -2 : using CRaC with Spring boot 3.2 https://shamimbhuiyan.ru/blogs/speed-up-the-java-app-startup-time-part----using-crac-with-spring-boot-
-[^2]: 
+[^2]: Speed up the Java app startup time, part -3 : deploying on Kubernates https://shamimbhuiyan.ru/blogs/speed-up-the-java-app-startup-time-part--3--deploying-on-kubernates
