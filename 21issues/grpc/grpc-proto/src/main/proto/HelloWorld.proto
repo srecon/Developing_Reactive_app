@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.imertyildiz.grpcproto;
+
+option java_multiple_files = true;
+
+message HelloWorldRequest{
+    string requestMessage = 1;
+    string clientName = 2;
+}
+
+message HelloWorldResponse{
+    string responseMessage = 1;
+}
+
+service HelloWorldService {
+    rpc HelloWorld(HelloWorldRequest) returns (HelloWorldResponse);
+}
