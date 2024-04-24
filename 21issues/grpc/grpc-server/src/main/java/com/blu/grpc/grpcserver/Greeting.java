@@ -15,8 +15,8 @@ public class Greeting extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
     @Override
     public void helloWorld(HelloWorldRequest request, StreamObserver<HelloWorldResponse> responseObserver) {
         //super.helloWorld(request, responseObserver);
-        LOG.info("Got message from client!: " + request.getClientName());
-        HelloWorldResponse response = HelloWorldResponse.newBuilder().setResponseMessage("Hello: "+ request.getClientName()).build();
+        LOG.info("Got message from client!: " + request.getClientName() + " Message: " + request.getRequestMessage());
+        HelloWorldResponse response = HelloWorldResponse.newBuilder().setResponseMessage("Hi: "+ request.getClientName()).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
