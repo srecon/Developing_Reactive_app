@@ -27,9 +27,9 @@ public class JavaExamplesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-			// add an entry without ttl
-			//DAOService.addEnrty("Key1", "value1");
-			// get the entry
+		// add an entry without ttl
+		DAOService.addEnrty("Key1", "value1");
+		// get the entry
 		String val = DAOService.getEntryByKey("Key1");
 		System.out.println("Value-> " + val);
 
